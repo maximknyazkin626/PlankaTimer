@@ -67,14 +67,17 @@
   color: #ab5314; 
 }
 
+.noobBorder {
+  color: #ab5314; 
+  border: 5px solid #ab5314; 
+}
+
 .begginer {
   color: #6f6f6f; 
 }
 
 .normal {
   color: #55a442; 
-  /* font-size: 18px;
-  font-weight: 700 */
 }
 
 .intermediate {
@@ -90,5 +93,9 @@
 }
 
 .machine {
-  color: #000000;
+  color: #67256e;
+}
+
+.god {
+  color: #337691;
 }

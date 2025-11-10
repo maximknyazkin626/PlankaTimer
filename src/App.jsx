@@ -15,8 +15,8 @@ function MainScreen({toggleIsOpen}) {
 
 function Condition({cond, style}) {
   return (
-    <div className={style} style={{fontSize: '18px',
-  fontWeight: '700'}}>{cond}</div>
+    <div className={style} style={{fontSize: '20px',
+  fontWeight: '700', marginBottom: '15%'}}>{cond}</div>
   );
 }
 
@@ -31,6 +31,15 @@ function TimerComponent() {
   const [seconds, setSeconds] = useState(0);
   const [minutes, setMinutes] = useState(0); 
   const [isRunning, setIsRunning] = useState(false);
+
+  const rank = minutes === 0 && seconds >= 30 && seconds < 60 ? "noob" :
+    minutes === 1 && seconds < 30 ? "begginer" :
+    minutes === 1 ? "normal" :
+    minutes === 2 && seconds < 30 ? "intermediate" :
+    minutes === 2 ? "high" :
+    minutes === 3 && seconds < 30 ? "pro" :
+    minutes === 3 ? "machine" :
+    minutes >= 4 ? "god" : "";
 
 
   useEffect(() => {
@@ -70,55 +79,52 @@ function TimerComponent() {
 
   return (
     <div className="mainContent">
-        <TimerTitle minutes={minutes} seconds={seconds}/>
-        { minutes === 0 && (seconds > 29 && seconds < 60) ? 
+
+        <TimerTitle minutes={minutes} seconds={seconds} style={rank}/>
+        
+        {/* { minutes === 0 && seconds === 0 ? 
           <>
-            <TimerTitle minutes={minutes} seconds={seconds} style='noob'/>
-            <Condition cond='Ты NOOB!' style='noob'/>
+            <TimerTitle minutes={minutes} seconds={seconds}/>
           </> : null
         }
 
-        { minutes === 1 && (seconds > 0 && seconds < 30) ? 
+        { minutes === 0 && (seconds > 0 && seconds < 30) ? 
           <>
-            <TimerTitle minutes={minutes} seconds={seconds} style='begginer'/>
-            <Condition cond='Ты Begginer!' style='begginer'/>
+            <TimerTitle minutes={minutes} seconds={seconds}/>
           </> : null
-        }
+        } */}
 
-        { minutes === 1 && (seconds > 30 && seconds < 60) ? 
-          <>
-            <TimerTitle minutes={minutes} seconds={seconds} style='normal'/>
-            <Condition cond='Ты Normal!' style='normal'/>
-          </> : null
-        }
+        {rank === "noob" && (
+          <Condition cond="Твоё звание: Червячок!" style="noob" />
+        )}
 
-        { minutes === 2 && (seconds > 0 && seconds < 30) ? 
-          <>
-            <TimerTitle minutes={minutes} seconds={seconds} style='intermediate'/>
-            <Condition cond='Ты Intermediate!' style='intermediate'/>
-          </> : null
-        }
+        {rank === "begginer" && (
+          <Condition cond='Твоё звание: Новичок!' style='begginer'/>
+        )}
 
-        { minutes === 2 && (seconds > 30 && seconds < 60) ? 
-          <>
-            <TimerTitle minutes={minutes} seconds={seconds} style='high'/>
-            <Condition cond='Ты High!' style='high'/>
-          </> : null
-        }
+        {rank === "normal" && (
+          <Condition cond='Твоё звание: Нормис!' style='normal'/>
+        )}
 
-        { minutes === 3 && (seconds > 0 && seconds < 30) ? 
-          <>
-            <TimerTitle minutes={minutes} seconds={seconds} style='pro'/>
-            <Condition cond='Ты Pro!' style='pro'/>
-          </> : null
-        }
+        {rank === "intermediate" && (
+          <Condition cond='Твоё звание: Продвинутый!' style='intermediate'/>
+        )}
 
-        { minutes === 3 && (seconds > 30 && seconds < 60) ? 
-          <>
-            <TimerTitle minutes={minutes} seconds={seconds} style='machine'/>
-            <Condition cond='Ты Machine!' style='machine'/>
-          </> : null
-        }
+        {rank === "high" && (
+          <Condition cond='Твоё звание: Мощный!' style='high'/>
+        )}
+
+        {rank === "pro" && (
+          <Condition cond='Твоё звание: Профессионал!' style='pro'/>
+        )}
+
+        {rank === "machine" && (
+          <Condition cond={`Твоё звание: Машина!`} style='machine'/>
+        )}
+
+        {rank === "god" && (
+          <Condition cond={`Твоё звание: Бог!`} style='god'/>
+        )}
 
 
       <div className="buttons">
@@ -129,9 +135,6 @@ function TimerComponent() {
           Обновить
         </button>
       </div>
-      {minutes === 2 ? 
-        <div style={{color: 'red', marginTop: 15, fontSize: '3.2em;', fontWeight: '700'}}>Your are god!</div> : <></>
-      }
     </div>
   );
 }
@@ -139,6 +142,7 @@ function TimerComponent() {
 function App() {
 
   const [isOpen, setIsOpen] = useState(true);
+  
 
   function toggleIsOpen() {
     setIsOpen((prev) => !prev);
