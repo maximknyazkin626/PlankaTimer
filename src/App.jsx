@@ -1,12 +1,11 @@
 import { useState, useEffect } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import plank from './assets/plank1.jpg'
 import './App.css'
 
 function MainScreen({toggleIsOpen}) {
   return(
     <div className='mainScreen'>
-      <img src="/src/assets/plank1.jpg" alt="plank" style={{width: '320px'}}/>
+      <img src={plank} alt="plank" style={{width: '320px'}}/>
       <span style={{fontSize: '40px', fontWeight: '300'}}>Plank Timer</span>
       <button onClick={toggleIsOpen} style={{width: "150px", fontSize: '18px'}}>Begin</button>
     </div>
@@ -81,18 +80,6 @@ function TimerComponent() {
     <div className="mainContent">
 
         <TimerTitle minutes={minutes} seconds={seconds} style={rank}/>
-        
-        {/* { minutes === 0 && seconds === 0 ? 
-          <>
-            <TimerTitle minutes={minutes} seconds={seconds}/>
-          </> : null
-        }
-
-        { minutes === 0 && (seconds > 0 && seconds < 30) ? 
-          <>
-            <TimerTitle minutes={minutes} seconds={seconds}/>
-          </> : null
-        } */}
 
         {rank === "noob" && (
           <Condition cond="Твоё звание: Червячок!" style="noob" />
